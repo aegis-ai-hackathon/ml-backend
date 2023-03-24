@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializer import SpamSerializer
+from .serializer import SpamSerializer,SpamSMSSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .ml import predict
@@ -10,4 +10,9 @@ def spamEmail(request):
     serializer.is_valid()
     pred=predict(serializer.data["content"])
     return Response({"email_id":serializer.data["email_id"], "spam":bool(pred)})
-
+@api_view(['POST'])
+def spamSMS(request):
+    serializer=SpamSMSSerializer(data=request.data)
+    serializer.is_valid()
+    pred=predict(serializer.data["content"])
+    return Response({"phone_number":serializer.data["phone_number"], "spam":bool(pred)})
