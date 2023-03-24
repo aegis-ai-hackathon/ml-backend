@@ -2,7 +2,7 @@ import pickle
 import string
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-def predict():
+def predict(content):
     corpus = pickle.load(open(r"api\textcorpus.pickle", "rb"))
     loaded_model = pickle.load(open(r"api\modelclf.pickle", "rb"))
 
@@ -18,7 +18,7 @@ def predict():
 
     tfidf_transformer = TfidfTransformer().fit(messages_bow)
 
-    y_pred=loaded_model.predict(tfidf_transformer.transform(bow_transformer.transform(["Hey there"])))[0]
+    y_pred=loaded_model.predict(tfidf_transformer.transform(bow_transformer.transform([content])))[0]
 
     return y_pred
 

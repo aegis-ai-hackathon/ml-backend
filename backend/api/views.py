@@ -8,6 +8,6 @@ from .ml import predict
 def spamEmail(request):
     serializer=SpamSerializer(data=request.data)
     serializer.is_valid()
-    pred=predict()
+    pred=predict(serializer.data["content"])
     return Response({"email_id":serializer.data["email_id"], "spam":bool(pred)})
 
