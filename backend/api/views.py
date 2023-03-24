@@ -15,4 +15,4 @@ def spamSMS(request):
     serializer=SpamSMSSerializer(data=request.data)
     serializer.is_valid()
     pred=predict(serializer.data["content"])
-    return Response({"phone_number":serializer.data["phone_number"], "spam":bool(pred)})
+    return Response({"phone_no":str(serializer.data["phone_no"]), "spam":bool(pred)})

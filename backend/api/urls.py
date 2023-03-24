@@ -3,5 +3,5 @@ from django.views.decorators.csrf import csrf_exempt
 from . import views
 urlpatterns = [
     path('email/',csrf_exempt(views.spamEmail)),
-    path('sms/',csrf_exempt(views.spamSMS()))
+    path('sms/',csrf_exempt(views.spamSMS))
 ]
