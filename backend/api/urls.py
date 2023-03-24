@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
-import views
+from . import views
 urlpatterns = [
-    path('/email',csrf_exempt(views.spamEmail()))
+    path('email/',csrf_exempt(views.spamEmail))
 ]
